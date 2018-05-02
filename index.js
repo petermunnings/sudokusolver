@@ -528,25 +528,27 @@ function resolve(){
 
   for(let index=0;index<numbers.length;index++){
     console.log()
-    console.log('attempt no: ', index+1)
+    console.log('problem no: ', index+1)
     let anotherRound=true
     let count=0
     while(anotherRound==true && count<20){
       numbers[index] = doRound(numbers[index])
       anotherRound=false
       count++
+      let noUnsolvedCells=0
       for(let r=0; r<9; r++){
         for(let c=0; c<9; c++){
           if(numbers[index][r][c]==0){
             anotherRound=true
-            break
+            noUnsolvedCells++
           }
         }
       }
+      console.log('round', count)
+      console.log(noUnsolvedCells + ' cells still to solve')
     }
     if(count<20){
       console.log('solved in ' + count + ' rounds')
-      console.log(numbers[index])
     } else {
       console.log('not solved in ' + count + ' rounds')
     }
